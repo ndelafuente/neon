@@ -1,7 +1,8 @@
-function receiveNext() {
+function startPuzzle() {
+    const vars = { CHECKPOINT: 0 };
     let socket = new WebSocket("wss://neonhealth.software/agent-puzzle/challenge");
     socket.onopen = () => { console.log("Connected") };
-    socket.onmessage = (event) => { handleMessage(socket, event.data) };
+    socket.onmessage = (event) => { handleMessage(socket, event.data, vars) };
     socket.onerror = (err) => { console.error("WebSocket error:", err) };
     socket.onclose = (event) => { console.log("Closed:", event.code, event.reason) };
 }
@@ -10,20 +11,22 @@ function receiveNext() {
  * Handle a message from NEON
  * @param {WebSocket} socket The web socket
  * @param {string} message Expected to be a stringified JSON object
+ * @param {{CHECKPOINT: number}} vars Variables accessible across calls
  */
-function handleMessage(socket, message) {
+function handleMessage(socket, message, vars) {
     const parsedMessage = JSON.parse(message)
-    console.log("Parsed message", parsedMessage);
+    console.debug("Parsed message", parsedMessage);
 
     switch (parsedMessage['type']) {
         case "challenge":
             handleChallenge(socket, parsedMessage['message']);
             return;
         case "success":
-            console.log("Success!");
+            console.log(`Checkpoint ${vars.CHECKPOINT} passed!`);
+            vars.CHECKPOINT += 1;
             return;
         case "error":
-            throw new Error(parsedMessage['message']);
+            throw new Error("Submission rejected: " + parsedMessage['message']);
         default: throw new EvalError(`Recieved unknown message type ${type}`);
     }
 }
@@ -36,7 +39,7 @@ function handleMessage(socket, message) {
 function handleChallenge(socket, fragments) {
     fragments.sort((a, b) => a['timestamp'] - b['timestamp']);
     const unscrambled = fragments.map(fragment => fragment['word']).join(' ');
-    console.log("Unscrambled:", unscrambled);
+    console.debug("Unscrambled:", unscrambled);
 }
 
 /**
@@ -60,3 +63,5 @@ function sendResponse(socket, message, { includePound = false } = {}) {
             return;
     }
 }
+
+startPuzzle();
