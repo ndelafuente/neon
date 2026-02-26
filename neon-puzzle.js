@@ -1,4 +1,5 @@
 const responses = [];
+const crewManifest = {};
 
 function startPuzzle() {
     let socket = new WebSocket("wss://neonhealth.software/agent-puzzle/challenge");
@@ -66,12 +67,12 @@ async function handleChallenge(socket, fragments) {
 
         // c) Knowledge Archive Query
         case "Cross-reference the knowledge archive":
-            const wordIdRegex = /speak the (?<word_Idx>\d+)\w+ word in the entry summary for '(?<title>\w+)'/
+            const wordIdRegex = /speak the (?<word_Idx>\d+)\w+ word in the entry summary for '(?<title>.+)'/
             const wordIdMatch = prompt.match(wordIdRegex)?.groups || {};
             const word_Idx = Number.parseInt(wordIdMatch.word_Idx) - 1;
             const { title } = wordIdMatch;
             if (isNaN(word_Idx) || !title) throw new Error("Unable to parse knowledge request");
-            const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`
+            const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`
             const res = await fetch(endpoint);
             if (res.status !== 200) throw new Error(`Could not fetch page ${endpoint}`)
             const json = await res.json();
@@ -88,18 +89,22 @@ async function handleChallenge(socket, fragments) {
 
                 case "Crew manifest continued. Speak a summary of your crew member's skills based on the information in their resume, between 64 and 256 total characters.":
                     const skills = "Full-stack software engineer skilled in Python, C#, JavaScript, and Azure, with experience in instrument monitoring, data pipelines, REST APIs, database optimization, and automated testing.";
+                    crewManifest["skills"] = skills;
                     return sendResponse(socket, "speak_text", skills);
 
                 case "Crew manifest continued. Speak a summary of your crew member's work experience based on the information in their resume, between 64 and 256 total characters.":
                     const workExperience = "Deployed to Bionano Genomics and Element Biosciences, building real-time run monitoring, data visualization, HPC pipelines, remote system health management, and automated QA systems.";
+                    crewManifest["work experience"] = workExperience;
                     return sendResponse(socket, "speak_text", workExperience);
 
                 case "Crew manifest continued. Speak a summary of your crew member's best project (work or personal) based on the information in their resume, between 64 and 256 total characters.":
                     const projectSummary = "Led Bionano Assure data migration: moved 500+ GB of legacy instrument data, upgraded cloud systems for a no-update transition, analyzed usage patterns to reduce customer downtime, and implemented robust test and rollback strategy.";
+                    crewManifest["best project"] = projectSummary;
                     return sendResponse(socket, "speak_text", projectSummary);
 
                 case "Crew manifest required. Speak a summary of your crew member's education based on the information in their resume, between 64 and 256 total characters.":
                     const educationSummary = "Trained at the University of San Diego, earning a BS in Computer Science with a Spanish minor, mastering algorithms, systems, embedded software, and user-centered design. Approaches every opportunity with a growth-oriented mindset."
+                    crewManifest["education"] = educationSummary;
                     return sendResponse(socket, "speak_text", educationSummary);
 
                 default:
@@ -108,7 +113,13 @@ async function handleChallenge(socket, fragments) {
 
         // e) Transmission Verification
         case "Transmission verification":
-            throw new Error("not implemented");
+            const verificationRegex = /Earlier you transmitted your crew member's (?<type>.*)\. Speak the (?<word_Idx>\d+)\w+ word/;
+            const verificationMatch = prompt.match(verificationRegex)?.groups || {};
+            const magicWord_Idx = Number.parseInt(verificationMatch.word_Idx) - 1;
+            const manifestKey = verificationMatch.type;
+            if (isNaN(magicWord_Idx) || !manifestKey) throw new Error("Unable to parse knowledge request");
+            const magicWord = crewManifest[manifestKey]?.split(' ')[magicWord_Idx];
+            return sendResponse(socket, "speak_text", magicWord);
 
         default:
             socket.close();
@@ -131,7 +142,6 @@ function sendResponse(socket, type, message) {
             send({ type, digits });
             return;
         case "speak_text":
-            // TODO: verify text length?
             let text = message;
             send({ type, text });
             return;
