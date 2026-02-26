@@ -38,29 +38,71 @@ function handleMessage(socket, message, vars) {
  */
 function handleChallenge(socket, fragments) {
     fragments.sort((a, b) => a['timestamp'] - b['timestamp']);
-    const unscrambled = fragments.map(fragment => fragment['word']).join(' ');
-    console.debug("Unscrambled:", unscrambled);
+    const prompt = fragments.map(fragment => fragment['word']).join(' ');
+    console.debug("Prompt:", prompt);
+
+    switch (prompt.split(/[.:]/)[0]) {
+        // a) Signal Handshake
+        case "Incoming vessel detected":
+            const freqRegex = /excellent software engineer, respond on frequency (\d)/;
+            const frequency = prompt.match(freqRegex)?.[1];
+            if (!frequency) throw new Error("Unable to parse frequency for excellence.");
+            return sendResponse(socket, "enter_digits", frequency);
+
+        // a) Vessel Identification
+        case "Transmit your vessel authorization code, followed by the pound key":
+            return sendResponse(socket, "enter_digits", "c97671c039ccaa80#");
+
+        // b) Computational Assessments
+        case "Orbital decay detected":
+            const trajRegex = /Determine the trajectory offset and transmit the result, followed by the pound key: (.*)/;
+            const trajectoryCalc = prompt.match(trajRegex)?.[1]
+            if (!trajectoryCalc) throw new Error("Unable to parse trajectory");
+            const trajectory = Number(eval(trajectoryCalc));
+            return sendResponse(socket, "enter_digits", trajectory.toString() + '#');
+
+        // c) Knowledge Archive Query
+        case "Cross-reference the knowledge archive":
+            throw new Error("not implemented");
+
+        // d) Crew Manifest Transmissions
+        case "Crew manifest continued":
+            const charLimitRegex = /less than (\d+) total characters/
+            const charLimit = Number.parseInt(prompt.match(charLimitRegex)?.[1]);
+            if (!charLimit) throw new Error("Unable to parse character limit");
+            const manifest = `This pilot should be granted access because he is nice`
+            return sendResponse(socket, "speak_text", manifest);
+
+        // e) Transmission Verification
+        case "unknown":
+            throw new Error("not implemented");
+
+        default:
+            socket.close();
+            throw new Error("Encountered unexpected prompt");
+    }
 }
 
 /**
  * A robust messenger, accomodating NEON's archaic logic
  * @param {WebSocket} socket The web socket
- * @param {string|number} message The message to send
- * @param {{includePound: boolean}} options
+ * @param {string} type The message type
+ * @param {string} message The message to send
  */
-function sendResponse(socket, message, { includePound = false } = {}) {
+function sendResponse(socket, type, message) {
     const send = (o) => socket.send(JSON.stringify(o));
-    switch (typeof message) {
-        case "number":
-            let digits = message.toString();
-            if (includePound) digits += '#';
-            send({ "type": "enter_digits", digits });
+    switch (type) {
+        case "enter_digits":
+            let digits = message;
+            send({ type, digits });
             return;
-        case "string":
+        case "speak_text":
             // TODO: verify text length?
             let text = message;
-            send({ "type": "speak_text", text });
+            send({ type, text });
             return;
+        default:
+            throw new Error(`Unknown response type ${type}`);
     }
 }
 
