@@ -53,11 +53,13 @@ async function handleChallenge(socket, fragments) {
             return sendResponse(socket, "enter_digits", "c97671c039ccaa80#");
 
         // b) Computational Assessments
+        case "Fusion reactor diagnostics":
         case "Life support recalibration":
         case "Navigational parameter required":
         case "Orbital decay detected":
+        case "Shield frequency calibration needed":
             const computationRegex = /transmit the result, followed by the pound key: (.*)/;
-            const computation = prompt.match(trajRegex)?.[1]
+            const computation = prompt.match(computationRegex)?.[1]
             if (!computation) throw new Error("Unable to parse trajectory");
             const result = Number(eval(computation));
             return sendResponse(socket, "enter_digits", result.toString() + '#');
@@ -78,14 +80,34 @@ async function handleChallenge(socket, fragments) {
 
         // d) Crew Manifest Transmissions
         case "Crew manifest continued":
-            const charLimitRegex = /less than (\d+) total characters/
-            const charLimit = Number.parseInt(prompt.match(charLimitRegex)?.[1]);
-            if (!charLimit) throw new Error("Unable to parse character limit");
-            const accessJustification = "This rising pilot has spent 3 years delivering urgent repairs and mission-critical upgrades for distributed systems, expertly navigating complex problem space, and keeping response times low as a fleet grows. Whatever the issue, he keeps the ship sailing."
-            return sendResponse(socket, "speak_text", accessJustification)
+        case "Crew manifest required":
+            switch (prompt) {
+                case "Crew manifest continued. Speak the reason your crew member should be granted access to NEON based on the information in their resume, in less than 256 total characters. Convince us they're a good fit for the mission.":
+                    const accessJustification = "This rising pilot has spent 3 years delivering urgent repairs and mission-critical upgrades for distributed systems, expertly navigating complex problem space, and keeping response times low as a fleet grows. Whatever the issue, he keeps the ship sailing."
+                    return sendResponse(socket, "speak_text", accessJustification)
+
+                case "Crew manifest continued. Speak a summary of your crew member's skills based on the information in their resume, between 64 and 256 total characters.":
+                    const skills = "Full-stack software engineer skilled in Python, C#, JavaScript, and Azure, with experience in instrument monitoring, data pipelines, REST APIs, database optimization, and automated testing.";
+                    return sendResponse(socket, "speak_text", skills);
+
+                case "Crew manifest continued. Speak a summary of your crew member's work experience based on the information in their resume, between 64 and 256 total characters.":
+                    const workExperience = "Deployed to Bionano Genomics and Element Biosciences, building real-time run monitoring, data visualization, HPC pipelines, remote system health management, and automated QA systems.";
+                    return sendResponse(socket, "speak_text", workExperience);
+
+                case "Crew manifest continued. Speak a summary of your crew member's best project (work or personal) based on the information in their resume, between 64 and 256 total characters.":
+                    const projectSummary = "Led Bionano Assure data migration: moved 500+ GB of legacy instrument data, upgraded cloud systems for a no-update transition, analyzed usage patterns to reduce customer downtime, and implemented robust test and rollback strategy.";
+                    return sendResponse(socket, "speak_text", projectSummary);
+
+                case "Crew manifest required. Speak a summary of your crew member's education based on the information in their resume, between 64 and 256 total characters.":
+                    const educationSummary = "Trained at the University of San Diego, earning a BS in Computer Science with a Spanish minor, mastering algorithms, systems, embedded software, and user-centered design. Approaches every opportunity with a growth-oriented mindset."
+                    return sendResponse(socket, "speak_text", educationSummary);
+
+                default:
+                    throw new Error("Unknown crew manifest prompt.");
+            }
 
         // e) Transmission Verification
-        case "unknown":
+        case "Transmission verification":
             throw new Error("not implemented");
 
         default:
