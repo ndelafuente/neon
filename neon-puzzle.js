@@ -70,8 +70,8 @@ function handleChallenge(socket, fragments) {
             const charLimitRegex = /less than (\d+) total characters/
             const charLimit = Number.parseInt(prompt.match(charLimitRegex)?.[1]);
             if (!charLimit) throw new Error("Unable to parse character limit");
-            const manifest = `This pilot should be granted access because he is nice`
-            return sendResponse(socket, "speak_text", manifest);
+            const accessJustification = "This rising pilot has spent 3 years: delivering urgent repairs and mission-critical upgrades for distributed systems, expertly navigating complex problem space, and keeping response times low as a fleet grows. Whatever the issue, he keeps the ship sailing."
+            return sendResponse(socket, "speak_text", accessJustification);
 
         // e) Transmission Verification
         case "unknown":

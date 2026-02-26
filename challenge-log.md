@@ -8,6 +8,7 @@
 - WebSocket usage
 - understanding that I don't need to actually design an LLM prompt to respond for me
 - multi character split
+- workshopping the reason I should be granted access
 
 ## Notes
 - "transmit" is not exclusive to `speak_text`
