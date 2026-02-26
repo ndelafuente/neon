@@ -3,7 +3,7 @@ const responses = [];
 function startPuzzle() {
     let socket = new WebSocket("wss://neonhealth.software/agent-puzzle/challenge");
     socket.onopen = () => { console.log("Connected") };
-    socket.onmessage = (event) => { handleMessage(socket, event.data, vars) };
+    socket.onmessage = (event) => { handleMessage(socket, event.data) };
     socket.onerror = (err) => { console.error("WebSocket error:", err) };
     socket.onclose = (event) => { console.log("Closed:", event.code, event.reason) };
 }
@@ -53,12 +53,14 @@ async function handleChallenge(socket, fragments) {
             return sendResponse(socket, "enter_digits", "c97671c039ccaa80#");
 
         // b) Computational Assessments
+        case "Life support recalibration":
+        case "Navigational parameter required":
         case "Orbital decay detected":
-            const trajRegex = /Determine the trajectory offset and transmit the result, followed by the pound key: (.*)/;
-            const trajectoryCalc = prompt.match(trajRegex)?.[1]
-            if (!trajectoryCalc) throw new Error("Unable to parse trajectory");
-            const trajectory = Number(eval(trajectoryCalc));
-            return sendResponse(socket, "enter_digits", trajectory.toString() + '#');
+            const computationRegex = /transmit the result, followed by the pound key: (.*)/;
+            const computation = prompt.match(trajRegex)?.[1]
+            if (!computation) throw new Error("Unable to parse trajectory");
+            const result = Number(eval(computation));
+            return sendResponse(socket, "enter_digits", result.toString() + '#');
 
         // c) Knowledge Archive Query
         case "Cross-reference the knowledge archive":
