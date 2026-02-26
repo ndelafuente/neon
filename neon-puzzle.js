@@ -1,5 +1,4 @@
 function recieveNext() {
-    // From ChatGPT
     let socket = new WebSocket("wss://neonhealth.software/agent-puzzle/challenge");
     socket.onopen = () => { console.log("Connected") };
     socket.onmessage = (event) => { handleMessage(event.data) };
@@ -7,7 +6,17 @@ function recieveNext() {
     socket.onclose = (event) => { console.log("Closed:", event.code, event.reason) };
 }
 
-function handleMessage(message) {s
+function handleMessage(message) {
     const parsedMessage = JSON.parse(message)
-    console.log("Recieved", parsedMessage);
+    console.log("Parsed message", parsedMessage);
+
+    switch (parsedMessage['type']) {
+        case "challenge":
+            return handleChallenge(parsedMessage['message']);
+        default: throw new EvalError(`Recieved unknown message type ${type}`);
+    }
+}
+
+function handleChallenge(fragments) {
+
 }
