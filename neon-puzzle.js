@@ -1,4 +1,4 @@
-function recieveNext() {
+function receiveNext() {
     let socket = new WebSocket("wss://neonhealth.software/agent-puzzle/challenge");
     socket.onopen = () => { console.log("Connected") };
     socket.onmessage = (event) => { handleMessage(event.data) };
