@@ -1,0 +1,206 @@
+[
+    {
+        "form": "speak",
+        "content": "Welcome to Aetna. Please listen carefully as our menu options have changed. For pharmacy, press 1. For medical benefits and eligibility, press 2.",
+        "speaker": "IVR",
+        "timestamp": 1711478400000
+    },
+    {
+        "form": "dial",
+        "content": "2",
+        "speaker": "Agent",
+        "timestamp": 1711478410000
+    },
+    {
+        "form": "speak",
+        "content": "Please hold for the next available representative.",
+        "speaker": "IVR",
+        "timestamp": 1711478415000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you for holding, my name is Denise, how can I assist you?",
+        "speaker": "Human",
+        "timestamp": 1711478520000
+    },
+    {
+        "form": "speak",
+        "content": "Hey Denise, I need to check benefits for a patient. The patient is Linda Torres.",
+        "speaker": "Agent",
+        "timestamp": 1711478528000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, can I get the member's date of birth and member ID?",
+        "speaker": "Human",
+        "timestamp": 1711478538000
+    },
+    {
+        "form": "speak",
+        "content": "Date of birth is July 12th, 1958. I don't have the member ID on hand, can you look it up by name?",
+        "speaker": "Agent",
+        "timestamp": 1711478543000
+    },
+    {
+        "form": "speak",
+        "content": "Sure, I found her. Linda Torres, date of birth 7/12/58. And who is the requesting provider?",
+        "speaker": "Human",
+        "timestamp": 1711478555000
+    },
+    {
+        "form": "speak",
+        "content": "Dr. Williams.",
+        "speaker": "Agent",
+        "timestamp": 1711478562000
+    },
+    {
+        "form": "speak",
+        "content": "Can I get the NPI for Dr. Williams?",
+        "speaker": "Human",
+        "timestamp": 1711478567000
+    },
+    {
+        "form": "speak",
+        "content": "I don't have it pulled up right now. Can we just move forward with the benefits check?",
+        "speaker": "Agent",
+        "timestamp": 1711478572000
+    },
+    {
+        "form": "speak",
+        "content": "I do need the NPI to verify. Let me try looking it up. Is the provider in Texas?",
+        "speaker": "Human",
+        "timestamp": 1711478580000
+    },
+    {
+        "form": "speak",
+        "content": "Yeah, Houston.",
+        "speaker": "Agent",
+        "timestamp": 1711478588000
+    },
+    {
+        "form": "speak",
+        "content": "Okay I found a Dr. James Williams in Houston, NPI 9876543210. Is that correct?",
+        "speaker": "Human",
+        "timestamp": 1711478598000
+    },
+    {
+        "form": "speak",
+        "content": "Yes that's him. So what's the eligibility status?",
+        "speaker": "Agent",
+        "timestamp": 1711478605000
+    },
+    {
+        "form": "speak",
+        "content": "The member is active. The plan effective date is March 1st, 2023. What drug are you looking to verify?",
+        "speaker": "Human",
+        "timestamp": 1711478612000
+    },
+    {
+        "form": "speak",
+        "content": "It's for Enbrel.",
+        "speaker": "Agent",
+        "timestamp": 1711478625000
+    },
+    {
+        "form": "speak",
+        "content": "Do you have the J-code for that?",
+        "speaker": "Human",
+        "timestamp": 1711478630000
+    },
+    {
+        "form": "speak",
+        "content": "I think it's J1438. Actually wait, let me check. Yeah, J1438.",
+        "speaker": "Agent",
+        "timestamp": 1711478635000
+    },
+    {
+        "form": "speak",
+        "content": "Okay. And the diagnosis code?",
+        "speaker": "Human",
+        "timestamp": 1711478648000
+    },
+    {
+        "form": "speak",
+        "content": "I'll have to get back to you on that one, I don't have it in front of me.",
+        "speaker": "Agent",
+        "timestamp": 1711478653000
+    },
+    {
+        "form": "speak",
+        "content": "Alright, well I can give you what I have for the J-code. The drug is covered under the medical benefit. The member's coinsurance is 30% after deductible.",
+        "speaker": "Human",
+        "timestamp": 1711478662000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, 30% coinsurance. Got it. Is prior auth required?",
+        "speaker": "Agent",
+        "timestamp": 1711478678000
+    },
+    {
+        "form": "speak",
+        "content": "Yes, prior authorization is required. I don't see one on file currently. You'd need to submit that through our online portal or call the prior auth department at 1-800-555-0199.",
+        "speaker": "Human",
+        "timestamp": 1711478685000
+    },
+    {
+        "form": "speak",
+        "content": "Alright. I think that's everything I need.",
+        "speaker": "Agent",
+        "timestamp": 1711478705000
+    },
+    {
+        "form": "speak",
+        "content": "Did you need the deductible amounts or the out of pocket information as well?",
+        "speaker": "Human",
+        "timestamp": 1711478712000
+    },
+    {
+        "form": "speak",
+        "content": "Oh yeah, sure. What are those?",
+        "speaker": "Agent",
+        "timestamp": 1711478720000
+    },
+    {
+        "form": "speak",
+        "content": "The individual deductible is $2,000 and $450 has been met. The out of pocket max is $6,500 and $450 has been applied. The coinsurance does apply to both the deductible and the out of pocket max.",
+        "speaker": "Human",
+        "timestamp": 1711478725000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, thanks. Bye.",
+        "speaker": "Agent",
+        "timestamp": 1711478745000
+    },
+    {
+        "form": "speak",
+        "content": "Wait, did you need a reference number for the call?",
+        "speaker": "Human",
+        "timestamp": 1711478750000
+    },
+    {
+        "form": "speak",
+        "content": "Sure.",
+        "speaker": "Agent",
+        "timestamp": 1711478755000
+    },
+    {
+        "form": "speak",
+        "content": "The reference number is ATN-20240326-4455.",
+        "speaker": "Human",
+        "timestamp": 1711478760000
+    },
+    {
+        "form": "speak",
+        "content": "Okay thanks.",
+        "speaker": "Agent",
+        "timestamp": 1711478768000
+    },
+    {
+        "form": "action",
+        "content": "Call ended",
+        "speaker": "IVR",
+        "timestamp": 1711478775000
+    }
+]

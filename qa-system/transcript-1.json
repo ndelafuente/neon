@@ -1,0 +1,212 @@
+[
+    {
+        "form": "speak",
+        "content": "Thank you for calling Blue Cross Blue Shield. For claims, press 1. For eligibility and benefits, press 2. For prior authorization, press 3.",
+        "speaker": "IVR",
+        "timestamp": 1711392000000
+    },
+    {
+        "form": "dial",
+        "content": "2",
+        "speaker": "Agent",
+        "timestamp": 1711392008000
+    },
+    {
+        "form": "speak",
+        "content": "Please enter or say the member's ID number.",
+        "speaker": "IVR",
+        "timestamp": 1711392012000
+    },
+    {
+        "form": "dial",
+        "content": "XKB881234567",
+        "speaker": "Agent",
+        "timestamp": 1711392018000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you. Please hold while I connect you to a representative.",
+        "speaker": "IVR",
+        "timestamp": 1711392025000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you for calling Blue Cross Blue Shield, this is Kevin, how can I help you?",
+        "speaker": "Human",
+        "timestamp": 1711392090000
+    },
+    {
+        "form": "speak",
+        "content": "Hi Kevin. My name is Maria, and first initial to my last name is T as in Tango. And first, I would like to let you know that this call is being recorded for quality and training purposes. I'm calling at the request of Dr. Patel to verify benefits and eligibility for one of your members.",
+        "speaker": "Agent",
+        "timestamp": 1711392095000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, go ahead. Can I get the member's name and date of birth?",
+        "speaker": "Human",
+        "timestamp": 1711392115000
+    },
+    {
+        "form": "speak",
+        "content": "Sure, the patient's name is Robert Chen, date of birth November 3rd, 1965.",
+        "speaker": "Agent",
+        "timestamp": 1711392120000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, I have Robert Chen pulled up. And can I get the provider's NPI?",
+        "speaker": "Human",
+        "timestamp": 1711392130000
+    },
+    {
+        "form": "speak",
+        "content": "Yes, the NPI is 1234567890. The provider is Dr. Anish Patel, servicing address is 450 Medical Center Drive, Suite 200, Columbus, Ohio.",
+        "speaker": "Agent",
+        "timestamp": 1711392135000
+    },
+    {
+        "form": "speak",
+        "content": "Got it. And what codes are you looking to verify today?",
+        "speaker": "Human",
+        "timestamp": 1711392150000
+    },
+    {
+        "form": "speak",
+        "content": "I need to verify benefits for J-code J as in Juliet 1745, diagnosis code M05.79, and CPT admin code 96413.",
+        "speaker": "Agent",
+        "timestamp": 1711392155000
+    },
+    {
+        "form": "speak",
+        "content": "Okay, let me pull that up. And what's the place of service?",
+        "speaker": "Human",
+        "timestamp": 1711392170000
+    },
+    {
+        "form": "speak",
+        "content": "Place of service is the physician's office, outpatient.",
+        "speaker": "Agent",
+        "timestamp": 1711392175000
+    },
+    {
+        "form": "speak",
+        "content": "Alright. So I can see the member is active and eligible. The plan effective date is January 1st, 2024, and there is no termination date on file. The group number is GRP-44821 and the group name is Midwest Manufacturing Employee Plan.",
+        "speaker": "Human",
+        "timestamp": 1711392185000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you. And is this plan the patient's primary or secondary insurance?",
+        "speaker": "Agent",
+        "timestamp": 1711392205000
+    },
+    {
+        "form": "speak",
+        "content": "This is the primary.",
+        "speaker": "Human",
+        "timestamp": 1711392210000
+    },
+    {
+        "form": "speak",
+        "content": "Got it. And can you confirm if the provider is in-network?",
+        "speaker": "Agent",
+        "timestamp": 1711392215000
+    },
+    {
+        "form": "speak",
+        "content": "Yes, Dr. Patel is showing as in-network.",
+        "speaker": "Human",
+        "timestamp": 1711392220000
+    },
+    {
+        "form": "speak",
+        "content": "Great. Can you tell me the cost share for the J-code? Specifically the copay or coinsurance, and whether it applies to the deductible and out of pocket max?",
+        "speaker": "Agent",
+        "timestamp": 1711392225000
+    },
+    {
+        "form": "speak",
+        "content": "Sure. For the J-code, the member has a 20% coinsurance after deductible. It does apply to the deductible and it does apply to the out of pocket max.",
+        "speaker": "Human",
+        "timestamp": 1711392240000
+    },
+    {
+        "form": "speak",
+        "content": "And what are the deductible and out of pocket max amounts, and how much has been met?",
+        "speaker": "Agent",
+        "timestamp": 1711392255000
+    },
+    {
+        "form": "speak",
+        "content": "The individual deductible is $1,500 and $800 has been met so far. The individual out of pocket max is $5,000 and $1,200 has been accumulated.",
+        "speaker": "Human",
+        "timestamp": 1711392262000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you. Is prior authorization required for this J-code?",
+        "speaker": "Agent",
+        "timestamp": 1711392280000
+    },
+    {
+        "form": "speak",
+        "content": "Yes, prior auth is required. I do see there is an active authorization on file. The auth number is PA-20240315-0042, effective March 15th, 2024 through September 15th, 2024, for 12 units.",
+        "speaker": "Human",
+        "timestamp": 1711392288000
+    },
+    {
+        "form": "speak",
+        "content": "Perfect. And is predetermination required?",
+        "speaker": "Agent",
+        "timestamp": 1711392308000
+    },
+    {
+        "form": "speak",
+        "content": "No, predetermination is not required for this code.",
+        "speaker": "Human",
+        "timestamp": 1711392315000
+    },
+    {
+        "form": "speak",
+        "content": "Okay. Let me just confirm back what I have. The member Robert Chen is active and eligible, primary plan, group number GRP-44821, in-network provider, 20% coinsurance after deductible for the J-code, $1,500 deductible with $800 met, $5,000 out of pocket max with $1,200 met, and prior auth is on file through September 15th. Does that all sound correct?",
+        "speaker": "Agent",
+        "timestamp": 1711392320000
+    },
+    {
+        "form": "speak",
+        "content": "Yes, that's all correct.",
+        "speaker": "Human",
+        "timestamp": 1711392355000
+    },
+    {
+        "form": "speak",
+        "content": "Great. Could I get a call reference number for my records?",
+        "speaker": "Agent",
+        "timestamp": 1711392360000
+    },
+    {
+        "form": "speak",
+        "content": "Sure, the reference number is REF-2024-0325-7891.",
+        "speaker": "Human",
+        "timestamp": 1711392368000
+    },
+    {
+        "form": "speak",
+        "content": "Thank you Kevin, I appreciate your help. Have a good day.",
+        "speaker": "Agent",
+        "timestamp": 1711392375000
+    },
+    {
+        "form": "speak",
+        "content": "You too, bye.",
+        "speaker": "Human",
+        "timestamp": 1711392380000
+    },
+    {
+        "form": "action",
+        "content": "Call ended",
+        "speaker": "IVR",
+        "timestamp": 1711392385000
+    }
+]
